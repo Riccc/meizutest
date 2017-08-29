@@ -1,56 +1,85 @@
-<div style="height: 100px;">
+<style>
+  .tags {
+    width: 300px;
+    font-size: xx-large;
+  }
 
-  <div class="col-xs-2" style="background-color: black;">
-    <ul class="nav nav-tab vertical-tab" role="tablist" id="vtab" style="font-size: x-large;text-align: center;background-color: cornsilk;">
-      <li role="presentation">
-        <p>Tags</p>
-      </li>
-      <% @datas.each do |a| %>
-          <li role="presentation">
-            <a  href="#<%= a.name %>" aria-controls="<%= a.name %>" role="tab"
-               data-toggle="tab" class="tag-class"><%= a.name %></a>
-          </li>
-      <% end %>
-      <li role="presentation">
+  .tags tr {
+    height: 100px;
+    text-align: center;
+  }
+
+  .photos tr {
+    height: 350px;
+  }
+
+  .photos tr td {
+    width: 350px;
+    text-align: center;
+  }
+    .pagination{
+      font-size: xx-large;
+    }
+</style>
+
+<div style="float: left">
+  <table class="table-bordered tags" style="height: 850px;">
+    <tr>
+      <td>Tags</td>
+    </tr>
+    <% @datas.each do |a| %>
+        <tr>
+          <td ondrop="drop(event,this.id)" ondragover="allowDrop(event)" id="<%= a.name %>">
+            <%= link_to ({:action => "index", :id => a.id}) do %>
+                <button class="btn btn-primary" style="font-size: xx-large">><%= a.name %></button>
+            <% end %>
+          </td>
+        </tr>
+    <% end %>
+    <tr>
+      <td>
         <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
           UploadPhoto
         </button>
-      </li>
-      <li role="presentation">
-        <p></p>
-      </li>
-    </ul>
-  </div>
-  <div class="tab-content vertical-tab-content col-xs-10" id="photos_data">
-    <% @datas.each do |a| %>
-        <div role="tabpanel" class="tab-pane" id="<%= a.name %>">
-          <h3>Photos In <%= a.name %></h3>
-          <% photos = Photo.where(:tag_id => a.id) %>
-          <% if photos.present? %>
-              <table>
-                <% photos.each do |b| %>
-                    <div style="float: left;">
-                      <div style="width: 350px;height: 300px;text-align: center;">
-                        <%= image_tag b.avatar.url(:medium) %>
-                      </div>
-                      <div style="text-align: center;width: 350px;">
-                        <label>Title：</label><%= b.title %><br>
-                        <label>Date：</label><%= b.created_at %><br>
-                        <label>Tag：</label><%= a.name %>
-                      </div>
-                    </div>
-                <% end %>
-                <%#= paginate photos %>
-              </table>
-          <% end %>
-        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+<div style="float: left;">
+  <div style="text-align: center;" id="photo_tag_div">
+    <% if @tag_name.present? %>
+        <h3>Photos In <a style="text-decoration:none;cursor: pointer;" id="photo_tag"><%= @tag_name %></a></h3>
     <% end %>
+  </div>
+  <table class="photos">
+    <tbody>
+
+      <% @photos.each_slice(3) do |b| %>
+        <tr>
+          <% b.each do |c| %>
+              <td>
+                <div>
+                <%= image_tag c.avatar.url(:medium),{:ondragstart=>"drag(event,this.id)",:id=>c.id} %>
+                </div>
+                <div>
+                <label>Title：</label><%= c.title %><br>
+                <label>Date：</label><%= c.created_at.strftime("%Y-%m-%d %T") %><br>
+                <label>Tag：</label><%= Tag.find_by_id(c.tag_id).name %>
+                </div>
+              </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div style="text-align: center;">
+    <%= paginate @photos %>
   </div>
 </div>
 
 <!-- Modal -->
 <%#= form_for @photo, url: "create_photo", html: {id: "new_photo" ,multipart: true } do |form| %>
-<%= form_for(@photo, :url => {:action => "create_photo"}, :html => {:multipart => true, :id => "new_photo"}) do |form| %>
+<%= form_for(@photo, :url => {:action => "create_photo"}, :html => {:id => "new_photo"}) do |form| %>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -90,44 +119,49 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <!--<a href="javascript:void(0)" class="btn btn-primary" id="submit" type="submit">Save</a>-->
-            <%= form.submit "Save", {class: "btn btn-primary", id: "submit", remote: true} %>
+            <%= form.submit "Save", {class: "btn btn-primary", id: "submit"} %>
           </div>
         </div>
       </div>
     </div>
 <% end %>
 <script>
-    //  $(function(){
-    //      $("#warning_label").hide();
-    //  })
-    //  $("#submit").click(function(){
-    //      if($("#photo_avatar").val() == ""){
-    //          $("#warning_label").show();
-    //      }else{
-    //          alert("111");
-    //          $("#warning_label").hide();
-    //          $("#new_photo").submit();
-    //      }
-    //  })
-//    $(function () {
-//        $("#submit").attr("data-remote", "true");
-//    })
-//    $(".tag-class").click(function(){
-//        $.ajax({
-//            type: 'get',
-//            dataType: 'json',
-//            data: {tag_name: this.innerText},
-//            url: '/tags/get_photos',
-//            success: function (data) {
-//                debugger;
-//                $("#photos_data").children().remove();
-//                $("#photos_data").append("<h3>"+ "Photos In "+data.tag+"</h3>");
-//                $("#photos_data").append("<table id='photos_table' ></table>");
-//                for(var i = 0; i < data.tag_info.length; i++){
-//                    $("#photos_table").append("<tr><td><h1>"+data.tag_info[i].avatar.url+"</h1> "+ data.tag_url +" </td></tr>");
-//                }
-//            }
-//        })
-//    })
+    $(function () {
+        $(".unTag").trigger("click");
+    })
+    $("#photo_tag").click(function(){
+         old_tag = $("#photo_tag").text()
+        $("#photo_tag").parent().parent().children().remove();
+        $("#photo_tag_div").append("<h3>Photos In <input id='tag_name' style='width: 120px;' value= "+old_tag+" ></h3>");
+    })
+
+    $("body").on('blur','#tag_name',function(){
+        $.ajax({
+            type: "POST",
+            url: "/tags/change_tag_name",
+            data: {new_tag_name: $("#tag_name").val(),old_tag_name: old_tag},
+        });
+    })
+
+    function allowDrop(ev)
+    {
+        ev.preventDefault();
+    }
+
+    function drag(ev,photo)
+    {
+        ev.dataTransfer.setData("img",ev.target.id);
+        photo_id = photo
+    }
+
+    function drop(ev,tag_id)
+    {
+        ev.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "/tags/change_photo_info",
+            data: {photo_info: photo_id,tag_info: tag_id},
+        });
+    }
+
 </script>

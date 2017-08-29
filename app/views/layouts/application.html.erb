@@ -1,15 +1,5 @@
-<!--<!DOCTYPE html>-->
-<!--<html>-->
-<!--<head>-->
-  <!--<title>Meizuweb</title>-->
-  <!--<%#= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>-->
-  <!--<%#= javascript_include_tag 'application', 'data-turbolinks-track' => true %>-->
-  <!--<%#= csrf_meta_tags %>-->
-<!--</head>-->
-<!--<body>-->
-
 <!DOCTYPE html>
-<html>
+<html style="background-color: burlywood;">
 <head>
   <meta charset="utf-8">
   <title>web</title>
@@ -18,8 +8,8 @@
   <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<%#= render 'layouts/header' %>
+<%= render 'layouts/header' %>
 <%= yield %>
-<%#= render 'layouts/footer' %>
+<%= render 'layouts/footer' %>
 </body>
 </html>
