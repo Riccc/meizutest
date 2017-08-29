@@ -1,0 +1,133 @@
+<div style="height: 100px;">
+
+  <div class="col-xs-2" style="background-color: black;">
+    <ul class="nav nav-tab vertical-tab" role="tablist" id="vtab" style="font-size: x-large;text-align: center;background-color: cornsilk;">
+      <li role="presentation">
+        <p>Tags</p>
+      </li>
+      <% @datas.each do |a| %>
+          <li role="presentation">
+            <a  href="#<%= a.name %>" aria-controls="<%= a.name %>" role="tab"
+               data-toggle="tab" class="tag-class"><%= a.name %></a>
+          </li>
+      <% end %>
+      <li role="presentation">
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+          UploadPhoto
+        </button>
+      </li>
+      <li role="presentation">
+        <p></p>
+      </li>
+    </ul>
+  </div>
+  <div class="tab-content vertical-tab-content col-xs-10" id="photos_data">
+    <% @datas.each do |a| %>
+        <div role="tabpanel" class="tab-pane" id="<%= a.name %>">
+          <h3>Photos In <%= a.name %></h3>
+          <% photos = Photo.where(:tag_id => a.id) %>
+          <% if photos.present? %>
+              <table>
+                <% photos.each do |b| %>
+                    <div style="float: left;">
+                      <div style="width: 350px;height: 300px;text-align: center;">
+                        <%= image_tag b.avatar.url(:medium) %>
+                      </div>
+                      <div style="text-align: center;width: 350px;">
+                        <label>Title：</label><%= b.title %><br>
+                        <label>Date：</label><%= b.created_at %><br>
+                        <label>Tag：</label><%= a.name %>
+                      </div>
+                    </div>
+                <% end %>
+                <%#= paginate photos %>
+              </table>
+          <% end %>
+        </div>
+    <% end %>
+  </div>
+</div>
+
+<!-- Modal -->
+<%#= form_for @photo, url: "create_photo", html: {id: "new_photo" ,multipart: true } do |form| %>
+<%= form_for(@photo, :url => {:action => "create_photo"}, :html => {:multipart => true, :id => "new_photo"}) do |form| %>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Upload Photo</h4>
+          </div>
+          <div class="modal-body">
+            <table class="table table-bordered">
+              <tr>
+                <td>
+                  <label>TagSelect：</label>
+                </td>
+                <td>
+                  <%= form.select :tag_id, options_for_select(get_all_tags) %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label>Title</label>
+                </td>
+                <td>
+                  <%= form.text_field :title %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label>PhotoSelect：</label>
+                </td>
+                <td>
+                  <%= form.file_field :avatar %>
+                  <!--<label id="warning_label" style="color: #B00100;">Please select one photo!</label>-->
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <!--<a href="javascript:void(0)" class="btn btn-primary" id="submit" type="submit">Save</a>-->
+            <%= form.submit "Save", {class: "btn btn-primary", id: "submit", remote: true} %>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>
+<script>
+    //  $(function(){
+    //      $("#warning_label").hide();
+    //  })
+    //  $("#submit").click(function(){
+    //      if($("#photo_avatar").val() == ""){
+    //          $("#warning_label").show();
+    //      }else{
+    //          alert("111");
+    //          $("#warning_label").hide();
+    //          $("#new_photo").submit();
+    //      }
+    //  })
+//    $(function () {
+//        $("#submit").attr("data-remote", "true");
+//    })
+//    $(".tag-class").click(function(){
+//        $.ajax({
+//            type: 'get',
+//            dataType: 'json',
+//            data: {tag_name: this.innerText},
+//            url: '/tags/get_photos',
+//            success: function (data) {
+//                debugger;
+//                $("#photos_data").children().remove();
+//                $("#photos_data").append("<h3>"+ "Photos In "+data.tag+"</h3>");
+//                $("#photos_data").append("<table id='photos_table' ></table>");
+//                for(var i = 0; i < data.tag_info.length; i++){
+//                    $("#photos_table").append("<tr><td><h1>"+data.tag_info[i].avatar.url+"</h1> "+ data.tag_url +" </td></tr>");
+//                }
+//            }
+//        })
+//    })
+</script>
