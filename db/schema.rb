@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170828040648) do
+ActiveRecord::Schema.define(version: 20170830174528) do
 
   create_table "photos", force: :cascade do |t|
     t.string   "tag_id",              limit: 20,  null: false

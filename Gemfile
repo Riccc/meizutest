@@ -14,7 +14,7 @@ gem 'execjs'
 gem 'pry'
 gem 'bootstrap-sass',       '3.2.0.0'
 # gem 'bcrypt',               '3.1.7'
-#gem 'mysql2', '~> 0.3.11'
+gem 'mysql2', '~> 0.3.11'
 gem 'paperclip', '~> 4.3', '>= 4.3.7'
 gem 'kaminari'
 
@@ -35,6 +35,6 @@ gem 'kaminari'
 # end
 #
 group :production do
-  gem 'pg',             '0.17.1'
+  #gem 'pg',             '0.17.1'
   gem 'rails_12factor', '0.0.2'
 end

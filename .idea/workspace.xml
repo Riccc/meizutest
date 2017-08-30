@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cec81848-d759-4cd0-b564-b2f8628ad20d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.generators" afterPath="$PROJECT_DIR$/.idea/.generators" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/meizuweb.iml" afterPath="$PROJECT_DIR$/.idea/meizuweb.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
@@ -33,11 +32,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Gemfile" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Gemfile" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Gemfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+            <state relative-caret-position="555">
+              <caret line="37" column="3" lean-forward="false" selection-start-line="37" selection-start-column="3" selection-end-line="37" selection-end-column="3" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="20170830174528_add_tags_data.rb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/db/migrate/20170830174528_add_tags_data.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="6" column="5" lean-forward="true" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -154,6 +163,7 @@
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/tags_controller.rb" />
         <option value="$PROJECT_DIR$/Gemfile" />
+        <option value="$PROJECT_DIR$/db/migrate/20170830174528_add_tags_data.rb" />
       </list>
     </option>
   </component>
@@ -840,12 +850,12 @@
       <workItem from="1503887929546" duration="23959000" />
       <workItem from="1503975947271" duration="84000" />
       <workItem from="1503981494729" duration="14860000" />
-      <workItem from="1504101750604" duration="2126000" />
+      <workItem from="1504101750604" duration="2685000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41029000" />
+    <option name="totallyTimeSpent" value="41588000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="797" extended-state="0" />
@@ -1200,8 +1210,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Gemfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        <state relative-caret-position="555">
+          <caret line="37" column="3" lean-forward="false" selection-start-line="37" selection-start-column="3" selection-end-line="37" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20170830174528_add_tags_data.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="5" lean-forward="true" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
           <folding />
         </state>
       </provider>

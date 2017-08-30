@@ -161,6 +161,7 @@
     <orderEntry type="library" scope="PROVIDED" name="mimemagic (v0.3.0, RVM: ruby-2.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mini_portile2 (v2.2.0, RVM: ruby-2.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="minitest (v5.10.3, RVM: ruby-2.3.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="mysql2 (v0.3.21, RVM: ruby-2.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="nokogiri (v1.8.0, RVM: ruby-2.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="paperclip (v4.3.7, RVM: ruby-2.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="pg (v0.17.1, RVM: ruby-2.3.1) [gem]" level="application" />
@@ -189,6 +190,7 @@
     <orderEntry type="library" scope="PROVIDED" name="thor (v0.20.0, RVM: ruby-2.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="thread_safe (v0.3.6, RVM: ruby-2.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="tilt (v2.0.8, RVM: ruby-2.3.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="turbolinks (v2.3.0, RVM: ruby-2.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="tzinfo (v1.2.3, RVM: ruby-2.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="uglifier (v2.5.3, RVM: ruby-2.3.1) [gem]" level="application" />
   </component>
