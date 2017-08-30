@@ -2,7 +2,7 @@ class TagsController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => [:change_tag_name,:change_photo_info]
   def index
     @datas = Tag.all
-    @photos = Photo.where(:tag_id => params[:id]).page(params[:page]).per(6)
+    @photos = Photo.where(:tag_id => params[:id]).order("updated_at DESC").page(params[:page]).per(6)
     @photo = Photo.new
     if params[:id].present?
       @tag_name = Tag.find_by_id(params[:id]).name
