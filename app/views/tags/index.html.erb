@@ -21,8 +21,8 @@
       font-size: xx-large;
     }
 </style>
-
-<div style="float: left">
+<div>
+<div style="float: left;width: 25%;">
   <table class="table-bordered tags" style="height: 850px;">
     <tr>
       <td>Tags</td>
@@ -45,7 +45,7 @@
     </tr>
   </table>
 </div>
-<div style="float: left;">
+<div style="float: left;width: 75%">
   <div style="text-align: center;" id="photo_tag_div">
     <% if @tag_name.present? %>
         <h3>Photos In <a style="text-decoration:none;cursor: pointer;" id="photo_tag"><%= @tag_name %></a></h3>
@@ -125,6 +125,7 @@
       </div>
     </div>
 <% end %>
+</div>
 <script>
     $(function () {
         $(".unTag").trigger("click");
